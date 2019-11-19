@@ -1,5 +1,6 @@
 
 'use strict';
+
 //Global functions
 var allProdImages = document.getElementById('allProdImages');
 
