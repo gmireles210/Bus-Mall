@@ -16,7 +16,7 @@ ProductAll.arrayImg.push(new ProductAll('Boots', 'lab/assets/boots.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Breakfast', 'lab/assets/breakfast.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Bubble Gum', 'lab/assets/bubblegum.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Chair', 'lab/assets/chair.jpg'));
-ProductAll.arrayImg.push(new ProductAll('Cthulhu', 'lab/assets/ctulhu.jpg'));
+ProductAll.arrayImg.push(new ProductAll('Cthulhu', 'lab/assets/cthulhu.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Dog Duck', 'lab/assets/dog-duck.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Dragon', 'lab/assets/dragon.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Pen', 'lab/assets/pen.jpg'));
