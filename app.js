@@ -37,9 +37,9 @@ ProductAll.prototype.fetchRandomImages = function() {
   for(var i = 0; i < 3; i++) {
     prodThreeImages.push(ProductAll.arrayImg[Math.floor(ProductAll.arrayImg.length * Math.random())]);
 
-    // var imgOne = ProductAll.arrayImg[Math.floor(ProductAll.arrayImg.length * Math.random())];
-    // var imgTwo = ProductAll.arrayImg[Math.floor(ProductAll.arrayImg.length * Math.random())];
-    // var imgThree = ProductAll.arrayImg[Math.floor(ProductAll.arrayImg.length * Math.random())];
+    // var imageOne = ProductAll.arrayImg[Math.floor(ProductAll.arrayImg.length * Math.random())];
+    // var imgageTwo = ProductAll.arrayImg[Math.floor(ProductAll.arrayImg.length * Math.random())];
+    // var imageThree = ProductAll.arrayImg[Math.floor(ProductAll.arrayImg.length * Math.random())];
   }
 
   prodThreeImages.map(function(ProductAll){
