@@ -1,4 +1,3 @@
-
 'use strict';
 
 //Global functions
@@ -30,6 +29,7 @@ ProductAll.arrayImg.push(new ProductAll('Unicorn', 'lab/assets/unicorn.jpg'));
 ProductAll.arrayImg.push(new ProductAll('USB', 'lab/assets/usb.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Water Can', 'lab/assets/water-can.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Wine Glass', 'lab/assets/wine-glass.jpg'));
+// ProductAll.arrayImg = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];
 
 ProductAll.prototype.fetchRandomImages = function() {
   var prodThreeImages = [];
