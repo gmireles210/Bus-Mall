@@ -40,8 +40,8 @@ ProductAll.prototype.fetchRandomImages = function() {
 
   prodThreeImages.map(function(ProductAll){
     return ProductAll.name;
-  }).forEach(function(element, index, arr){
-    if(arr.indexOf(element) !== index) {
+  }).forEach(function(element, index, array){
+    if(array.indexOf(element) !== index) {
       prodDuplex = true;
       if(prodDuplex) {
         ProductAll.prototype.fetchRandomImages();
