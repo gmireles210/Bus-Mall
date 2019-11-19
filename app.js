@@ -30,7 +30,7 @@ ProductAll.arrayImg.push(new ProductAll('USB', 'lab/assets/usb.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Water Can', 'lab/assets/water-can.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Wine Glass', 'lab/assets/wine-glass.jpg'));
 
-
+// Used Stackoverflow for assistance with below equation //
 ProductAll.prototype.fetchRandomImages = function() {
   var prodThreeImages = [];
   var prodDuplex = false;
