@@ -46,7 +46,6 @@ ProductAll.prototype.fetchRandomImages = function() {
       if(prodDuplex) {
         ProductAll.prototype.fetchRandomImages();
       }
-
     }
   });
   return prodThreeImages;
