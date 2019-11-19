@@ -23,7 +23,7 @@ ProductAll.arrayImg.push(new ProductAll('Pen', 'lab/assets/pen.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Pet Sweep', 'lab/assets/pet-sweep.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Scissors', 'lab/assets/scissors.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Shark', 'lab/assets/shark.jpg'));
-ProductAll.arrayImg.push(new ProductAll('Sweep', 'lab/assets/sweep.png'));
+ProductAll.arrayImg.push(new ProductAll('Sweep', 'lab/assets/sweep.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Tauntaun', 'lab/assets/tauntaun.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Unicorn', 'lab/assets/unicorn.jpg'));
 ProductAll.arrayImg.push(new ProductAll('USB', 'lab/assets/usb.jpg'));
