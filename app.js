@@ -30,7 +30,6 @@ ProductAll.arrayImg.push(new ProductAll('Unicorn', 'lab/assets/unicorn.jpg'));
 ProductAll.arrayImg.push(new ProductAll('USB', 'lab/assets/usb.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Water Can', 'lab/assets/water-can.jpg'));
 ProductAll.arrayImg.push(new ProductAll('Wine Glass', 'lab/assets/wine-glass.jpg'));
-// ProductAllNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
 
 ProductAll.prototype.fetchRandomImages = function() {
   var prodThreeImages = [];
@@ -38,10 +37,10 @@ ProductAll.prototype.fetchRandomImages = function() {
   for(var i = 0; i < 3; i++) {
     prodThreeImages.push(ProductAll.arrayImg[Math.floor(ProductAll.arrayImg.length * Math.random())]);
 
-    // var imageOne = ProductAll.arrayImg[Math.floor(ProductAll.arrayImg.length * Math.random())];
-    // var imgageTwo = ProductAll.arrayImg[Math.floor(ProductAll.arrayImg.length * Math.random())];
-    // var imageThree = ProductAll.arrayImg[Math.floor(ProductAll.arrayImg.length * Math.random())];
-  }
+    /*var imageOne = ProductAll.arrayImg[Math.floor(ProductAll.arrayImg.length * Math.random())];
+    var imgageTwo = ProductAll.arrayImg[Math.floor(ProductAll.arrayImg.length * Math.random())];
+    var imageThree = ProductAll.arrayImg[Math.floor(ProductAll.arrayImg.length * Math.random())];
+  }*/
 
   prodThreeImages.map(function(ProductAll){
     return ProductAll.name;
