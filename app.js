@@ -165,16 +165,16 @@ var fetchRandomNumber = function() {
 // Graph information
 var drawGraphOfProductsVoteCounts = function() {
   var two_Dim = '2d';
-  var red = 'rgba(255, 99, 132, 0.2)';
-  var blue = 'rgba(54, 162, 235, 0.2)';
-  var yellow = 'rgba(255, 206, 86, 0.2)';
-  var green = 'rgba(75, 192, 192, 0.2)';
-  var purple = 'rgba(153, 102, 255, 0.2)';
-  var redBorder = 'rgba(255, 99, 132, 1)';
-  var blueBorder = 'rgba(54, 162, 235, 1)';
-  var yellowBorder = 'rgba(255, 206, 86, 1)';
-  var greenBorder = 'rgba(75, 192, 192, 1)';
-  var purpleBorder = 'rgba(153, 102, 255, 1)';
+  var red = 'rgb(145,0,63)';
+  var blue = 'rgb(34,94,168)';
+  var yellow = 'rgb(255,237,160)';
+  var green = 'rgb(0,90,50)';
+  var purple = 'rgb(74,20,134)';
+  var redBorder = 'rgb(145,0,63)';
+  var blueBorder = 'rgb(34,94,168)';
+  var yellowBorder = 'rgb(255,237,160)';
+  var greenBorder = 'rgb(0,90,50)';
+  var purpleBorder = 'rgb(74,20,134)';
 
   var context = pageControl.displayVoteCountProd.getContext(two_Dim);
 
