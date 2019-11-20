@@ -6,7 +6,7 @@ var allProducts = [];
 // Constructor function that create an object for each product
 function Product(name) {
   this.name = name;
-  this.path = `lab/assets${name}.jpg`;
+  this.path = `lab/assets/${name}.jpg`;
   this.timesClicked = 0;
   this.numTimeShown = 0; // This property is not in use
 }
