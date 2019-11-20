@@ -5,9 +5,9 @@ var container = document.getElementById('main-container');
 var l_Image = document.getElementById('left-image');
 var c_Image = document.getElementById('center-iamge');
 var r_Image = document.getElementById('right-image');
-var l_ImagePara = document.getElementById('left-para');
-var c_ImagePara = document.getElementById('center-para');
-var r_ImagePara = document.getElementById('right-para');
+var l_Image_Con = document.getElementById('left-con');
+var c_Image_Con = document.getElementById('center-con');
+var r_Image_Con = document.getElementById('right-con');
 
 // counter for total clicks
 var clicksTot = 0;
@@ -103,9 +103,9 @@ var renderrandoImages = function(){
   var centerEl = document.getElementById('center-image');
   var rightEl = document.getElementById('right-image');
 
-  var leftText = document.getElementById('left-para');
-  var centerText = document.getElementById('center-para');
-  var rightText = document.getElementById('right-para');
+  var leftText = document.getElementById('left-con');
+  var centerText = document.getElementById('center-con');
+  var rightText = document.getElementById('right-con');
 
 
   leftEl.setAttribute('src', total_Images[prev_Image[0]].imageSrc);
