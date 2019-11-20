@@ -187,66 +187,67 @@ function chartData(){
         label: 'Number of Views',
         data: imageViews,
         backgroundColor: [
-          'rgb(225, 85, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
-          'rgb(200, 180, 40)',
+          red,
+          blue,
+          yellow,
+          green,
+          purple,
+          red,
+          blue,
+          yellow,
+          green,
+          purple,
+          red,
+          blue,
+          yellow,
+          green,
+          purple,
+          red,
+          blue,
+          yellow,
+          green,
+          purple,
         ],
         borderColor: [
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
-          'rgb(55, 150, 220)',
+          redBorder,
+          blueBorder,
+          yellowBorder,
+          greenBorder,
+          purpleBorder,
+          redBorder,
+          blueBorder,
+          yellowBorder,
+          greenBorder,
+          purpleBorder,
+          redBorder,
+          blueBorder,
+          yellowBorder,
+          greenBorder,
+          purpleBorder,
+          redBorder,
+          blueBorder,
+          yellowBorder,
+          greenBorder,
+          purpleBorder,
         ],
-      }],
+        borderWidth: 1
+      }]
     },
     options: {
+      legend: {
+        display: false
+      },
       scales: {
         yAxes: [{
           ticks: {
-            autoSkip: false,
-          }
-        }],
-        yAxes: [{
-          ticks: {
-            beginAtZero: true,
+            stepSize: 1,
+            beginAtZero:true
           }
         }]
       }
     }
   });
+};
 
 // function chartData() {
 //   return new Chart(ctx, imageChart);
