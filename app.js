@@ -1,26 +1,26 @@
-'use strict';
-//Global functions
+// var productImageContainer = document.getElementById('productImageContainer');
 var allProdImages = document.getElementById('allProdImages');
-
-var prodOneImage = document.getElementById('prodOneImage');
-var prodTwoImage = document.getElementById('prodTwoImage');
-var prodThreeImage = document.getElementById('prodThreeImage');
+var prodOneImages = document.getElementById('prodOneImages');
+var prodTwoImages = document.getElementById('prodTwoImages');
+var prodThreeImages = document.getElementById('prodThreeImages');
 var resultList = document.getElementById('resultList');
-var ctx = document.getElementById('chartResults').getContext('2d');
+var ctx = document.getElementById('myChart').getContext('2d');
 
 var firstProduct = null;
 var secondProduct = null;
 var thirdProduct = null;
 
-function Product(name, imgUrl) {
+// Set a constructor
+function Product(name, imgURL) {
   this.name = name;
-  this.imgUrl = imgUrl;
+  this.imgURL = imgURL;
   this.clickCtr = 0;
   this.shownCtr = 0;
   Product.allProducts.push(this);
 }
 
-Product.arrayImg = [];
+// Array to store all the products
+Product.allProducts = [];
 
 // Helper function to display document elements
 function addElement(tag, container, text) {
@@ -30,7 +30,8 @@ function addElement(tag, container, text) {
   return element;
 }
 
-function checkDuplicate(objName, arr) {
+// Helper function to check the duplication
+function checkDups(objName, arr) {
   var match = 0;
   for (var i = 0; i < arr.length; i++) {
     if (objName === arr[i].name) {
@@ -40,28 +41,28 @@ function checkDuplicate(objName, arr) {
   return match;
 }
 
-new Product('Bag', 'lab/assets/bag.jpg');
-new Product('Banana', 'lab/assets/banana.jpg');
-new Product('Bathroom', 'lab/assets/bathroom.jpg');
-new Product('Boots', 'lab/assets/boots.jpg');
-new Product('Breakfast', 'lab/assets/breakfast.jpg');
-new Product('Bubble Gum', 'lab/assets/bubblegum.jpg');
-new Product('Chair', 'lab/assets/chair.jpg');
-new Product('Cthulhu', 'lab/assets/cthulhu.jpg');
-new Product('Dog Duck', 'lab/assets/dog-duck.jpg');
-new Product('Dragon', 'lab/assets/dragon.jpg');
-new Product('Pen', 'lab/assets/pen.jpg');
-new Product('Pet Sweep', 'lab/assets/pet-sweep.jpg');
-new Product('Scissors', 'lab/assets/scissors.jpg');
-new Product('Shark', 'lab/assets/shark.jpg');
-new Product('Sweep', 'lab/assets/sweep.jpg');
-new Product('Tauntaun', 'lab/assets/tauntaun.jpg');
-new Product('Unicorn', 'lab/assets/unicorn.jpg');
-new Product('USB', 'lab/assets/usb.jpg');
-new Product('Water Can', 'lab/assets/water-can.jpg');
-new Product('Wine Glass', 'lab/assets/wine-glass.jpg');
 
-// Used Stackoverflow for assistance with below equation //
+new Product('bag', 'lab/assets/bag.jpg');
+new Product('banana', 'lab/assets/banana.jpg');
+new Product('boots', 'lab/assets/boots.jpg');
+new Product('breakfast', 'lab/assets/breakfast.jpg');
+new Product('bubblegum', 'lab/assets/bubblegum.jpg');
+new Product('chair', 'lab/assets/chair.jpg');
+new Product('cthulhu', 'lab/assets/cthulhu.jpg');
+new Product('dog-duck', 'lab/assets/dog-duck.jpg');
+new Product('dragon', 'lab/assets/dragon.jpg');
+new Product('pen', 'lab/assets/pen.jpg');
+new Product('pet-sweep', 'lab/assets/pet-sweep.jpg');
+new Product('scissors', 'lab/assets/scissors.jpg');
+new Product('shark', 'lab/assets/shark.jpg');
+new Product('sweep', 'lab/assets/sweep.jpg');
+new Product('tauntaun', 'lab/assets/tauntaun.jpg');
+new Product('unicorn', 'lab/assets/unicorn.jpg');
+new Product('usb', 'lab/assets/usb.jpg');
+new Product('water-can', 'lab/assets/water-can.jpg');
+new Product('wine-glass', 'lab/assets/wine-glass.jpg');
+
+
 function fetchThreeProd() {
   var previousSet = [];
   if (firstProduct !== null) {
@@ -69,30 +70,29 @@ function fetchThreeProd() {
     previousSet.push(secondProduct.name);
     previousSet.push(thirdProduct.name);
   }
-
-  var disp_Images = [];
-  while (disp_Images.length < 3) {
-    var radnoIndex = Math.floor(Math.random() * Product.allProducts.length);
+  var imagesDisplayed = [];
+  while (imagesDisplayed.length < 3) {
+    var randoIndex = Math.floor(Math.random() * Product.allProducts.length);
     // Check Ducplicate on three displayed img
-    if (checkDuplicate(Product.allProducts[radnoIndex].name, disp_Images) === 0) {
+    if (checkDups(Product.allProducts[randoIndex].name, imagesDisplayed) === 0) {
       // Check immediate previous set
-      if (previousSet.includes(Product.allProducts[radnoIndex].name) === false) {
-        disp_Images.push(Product.allProducts[radnoIndex]);
+      if (previousSet.includes(Product.allProducts[randoIndex].name) === false) {
+        imagesDisplayed.push(Product.allProducts[randoIndex]);
       }
     }
   }
-  prodOneImage.src = disp_Images[0].imgURL;
-  prodTwoImage.src = disp_Images[1].imgURL;
-  prodThreeImage.src = disp_Images[2].imgURL;
+  prodOneImages.src = imagesDisplayed[0].imgURL;
+  prodTwoImages.src = imagesDisplayed[1].imgURL;
+  prodThreeImages.src = imagesDisplayed[2].imgURL;
 
-  firstProduct = disp_Images[0];
-  secondProduct = disp_Images[1];
-  thirdProduct = disp_Images[2];
+  firstProduct = imagesDisplayed[0];
+  secondProduct = imagesDisplayed[1];
+  thirdProduct = imagesDisplayed[2];
 }
 
 fetchThreeProd();
 
-function totalResult() {
+function totalResultsDisp() {
   for (var i = 0; i < Product.allProducts.length; i++) {
     addElement('li', resultList, Product.allProducts[i].name + ' had ' + Product.allProducts[i].clickCtr + ' votes and was shown ' + Product.allProducts[i].shownCtr + ' times');
   }
@@ -108,11 +108,11 @@ function clicker(event) {
     secondProduct.shownCtr++;
     thirdProduct.shownCtr++;
 
-    if(id === 'prodOneImage') {
+    if(id === 'prodOneImages') {
       firstProduct.clickCtr++;
-    } else if(id === 'prodTwoImage') {
+    } else if(id === 'prodTwoImages') {
       secondProduct.clickCtr++;
-    } else if(id === 'prodThreeImage') {
+    } else if(id === 'prodThreeImages') {
       thirdProduct.clickCtr++;
     }
 
@@ -123,7 +123,7 @@ function clicker(event) {
   if(counter === 25) {
     alert('Done!');
     createChart();
-    totalResult();
+    totalResultsDisp();
   }
 }
 
@@ -132,12 +132,12 @@ allProdImages.addEventListener('click', clicker);
 // Create result chart
 function createChart() {
   var label = [];
-  var v_Data = [];
-  var displayedData = [];
+  var voteData = [];
+  var shownData = [];
   for (var i = 0; i < Product.allProducts.length; i++) {
     label.push(Product.allProducts[i].name);
-    v_Data.push(Product.allProducts[i].clickCtr);
-    displayedData.push(Product.allProducts[i].shownCtr);
+    voteData.push(Product.allProducts[i].clickCtr);
+    shownData.push(Product.allProducts[i].shownCtr);
   }
   // eslint-disable-next-line no-undef
   new Chart(ctx, {
@@ -145,67 +145,71 @@ function createChart() {
     data: {
       labels: label,
       datasets: [{
-        label: 'Number of Votes',
-        data: v_Data,
+        label: '# of Votes',
+        data: voteData,
         backgroundColor: [
-          red,
-          blue,
-          yellow,
-          green,
-          purple,
-          red,
-          blue,
-          yellow,
-          green,
-          purple,
-          red,
-          blue,
-          yellow,
-          green,
-          purple,
-          red,
-          blue,
-          yellow,
-          green,
-          purple,
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
         ],
         borderColor: [
-          redBorder,
-          blueBorder,
-          yellowBorder,
-          greenBorder,
-          purpleBorder,
-          redBorder,
-          blueBorder,
-          yellowBorder,
-          greenBorder,
-          purpleBorder,
-          redBorder,
-          blueBorder,
-          yellowBorder,
-          greenBorder,
-          purpleBorder,
-          redBorder,
-          blueBorder,
-          yellowBorder,
-          greenBorder,
-          purpleBorder,
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+      },
+      {
+        label: '# of Views',
+        data: shownData,
       }]
     },
     options: {
-      legend: {
-        display: false
-      },
       scales: {
         yAxes: [{
           ticks: {
-            stepSize: 1,
-            beginAtZero:true
+            beginAtZero: true
           }
         }]
       }
     }
   });
-};
+}

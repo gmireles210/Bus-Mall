@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <title>Bus Mall</title>
+    <title>BusMall</title>
     <link href="style.css" type="text/css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap" rel="stylesheet">
-</head>
+  </head>
   <body>
     <main>
       <div id='titleContainer'>
         <h1>Hello Shopper!! Directly below is a catalog of luxury products engineered to provoke passengers to take a mini-mental vacation whilst traveling. Please click on any product that you would normally purchase.</h1>
-        <h2>After you have made your selections, a graph will pop-up that details the data from your clicks.</h2>
+        <h2>After your selections are made, a graph will pop-up that details the data from your clicks.</h2>
       </div>
       <div id='productImageContainer'>
         <ul id='productImageList'>
-          <li><img id='prodOneImage' src='' alt='firstImg' /></li>
-          <li><img id='prodTwoImage' src='' alt='secondImg' /></li>
-          <li><img id='prodThreeImage' src='' alt='thirdImg' /></li>
+          <li><img id='prodOneImages' src='' alt='firstImg' /></li>
+          <li><img id='prodTwoImages' src='' alt='secondImg' /></li>
+          <li><img id='prodThreeImages' src='' alt='thirdImg' /></li>
         </ul>
       </div>
-      <canvas id="chartResults"></canvas>
+      <canvas id="myChart"></canvas>
       <div id='resultContainer'>
         <ul id='resultList'>
         </ul>
       </div>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="app.js"></script>
   </body>
 </html>
