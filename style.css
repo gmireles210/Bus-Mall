@@ -1,30 +1,44 @@
-* {
+*{
     box-sizing: border-box;
-    margin: 0 auto;
   }
   
-  html {
-    width: 960px;
+  h1{
+    text-align: center;
   }
   
-  #titleContainer {
-    margin: 40px 0px;
-    font-family: 'Odibee Sans', cursive;
-  }
-    
-  img {
-    position: relative;
-    float: left;
+  img{
     width: 300px;
     height: 300px;
-    object-fit:scale-down;
+    padding: 20px;
+    margin-left: 5px;
+    border: 1px groove grey;
   }
   
-  #productImageList {
-    margin: 40px 0px;
+  #image{
+    float: left;
+    width: 30.33%;
+    padding: 5px;
+  } 
+  
+  #main-container::after {
+    content: "";
+    clear: both;
+    display: table;
   }
   
-  #productImageList li {
-    display: inline-block;
-    font-size: 1.5em;
+  
+  #left-para{
+    text-align: center;
+  }
+  
+  #center-para{
+    text-align: center;
+  }
+  
+  #right-para{
+    text-align: center;
+  }
+  
+  footer{
+    text-align: center;
   }

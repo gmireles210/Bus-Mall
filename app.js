@@ -1,215 +1,257 @@
-// var productImageContainer = document.getElementById('productImageContainer');
-var productImageList = document.getElementById('productImageList');
-var firstImg = document.getElementById('firstImg');
-var secondImg = document.getElementById('secondImg');
-var thirdImg = document.getElementById('thirdImg');
-var resultList = document.getElementById('resultList');
-var ctx = document.getElementById('myChart').getContext('2d');
+'use strict';
 
-var currentFirstProduct = null;
-var currentSecondProduct = null;
-var currentThirdProduct = null;
+// Grabbing all the global images
+var container = document.getElementById('main-container');
+var leftImage = document.getElementById('left-image');
+var centerImage = document.getElementById('center-iamge');
+var rightImage = document.getElementById('right-image');
+var leftImagePara = document.getElementById('left-para');
+var centerImagePara = document.getElementById('center-para');
+var rightImagePara = document.getElementById('right-para');
 
-// Set a constructor
-function Product(name, imgURL) {
+// counter for total clicks
+var totalClicks = 0;
+var previousImage = [];
+var allImages = [];
+var clickLimit = 25;
+
+// variable to store images aleady on the page
+var leftImageOnPage = null;
+var rightImageOnPage = null;
+
+
+var img = [
+  
+
+  { imageSrc:'lab/assets/bag.jpg', name:'bag'},
+  { imageSrc:'lab/assets/banana.jpg', name:'banana'},
+  { imageSrc:'lab/assets/bathroom.jpg', name:'bathroom'},
+  { imageSrc:'lab/assets/boots.jpg', name:'boots'},
+  { imageSrc:'lab/assets/breakfast.jpg', name:'breakfast'},
+  { imageSrc:'lab/assets/bubblegum.jpg', name:'bubblegum'},
+  { imageSrc:'lab/assets/chair.jpg', name:'chair'},
+  { imageSrc:'lab/assets/cthulhu.jpg', name:'cthulhu'},
+  { imageSrc:'lab/assets/dog-duck.jpg', name:'dog-duck'},
+  { imageSrc:'lab/assets/dragon.jpg', name:'dragon'},
+  { imageSrc:'lab/assets/pen.jpg', name:'pen'},
+  { imageSrc:'lab/assets/pet-sweep.jpg', name:'pet-sweep'},
+  { imageSrc:'lab/assets/scissors.jpg', name:'scissors'},
+  { imageSrc:'lab/assets/shark.jpg', name:'shark'},
+  { imageSrc:'lab/assets/sweep.png', name:'sweep'},
+  { imageSrc:'lab/assets/tauntaun.jpg', name:'tauntaun'},
+  { imageSrc:'lab/assets/unicorn.jpg', name:'unicorn'},
+  { imageSrc:'lab/assets/usb.gif', name:'usb'},
+  { imageSrc:'lab/assets/water-can.jpg', name:'water-can'},
+  { imageSrc:'lab/assets/wine-glass.jpg', name:'wine-glass'},
+
+];
+
+// Images constructor
+var Images = function(name, imageUrl){
   this.name = name;
-  this.imgURL = imgURL;
-  this.clickCtr = 0;
-  this.shownCtr = 0;
-  Product.allProducts.push(this);
+  this.imageSrc = imageUrl;
+  this.clicks = 0;
+  this.views = 0;
+
+  // Images.allImages.push(this);
+  // Images.previousImage.push(this);
 }
 
-// Array to store all the products
-Product.allProducts = [];
+// Images.previousImage = [];
+// Images.allImages = [];
 
-// Helper function to display document elements
-function addElement(tag, container, text) {
-  var element = document.createElement(tag);
-  container.appendChild(element);
-  element.textContent = text;
-  return element;
+
+// looping through the images
+for(var i = 0; i < img.length; i++){
+  allImages.push(new Images(img[i].name, img[i].imageSrc));
+}
+console.log(allImages);
+
+
+// calculating random images to display 
+var randomImages = function(){
+  return Math.floor(Math.floor(Math.random() * img.length));
 }
 
-// Helper function to check the duplication
-function checkDuplicate(objName, arr) {
-  var match = 0;
-  for (var i = 0; i < arr.length; i++) {
-    if (objName === arr[i].name) {
-      match++;
-    }
+// pick random images and also take care of double images
+var pickRandomImages = function(){
+
+  previousImage = [];
+  var leftIndex = randomImages();
+  var leftImage = allImages[leftIndex];
+  previousImage.push(leftIndex);
+
+  var centerIndex = randomImages();
+  while(centerIndex == leftIndex){
+    centerIndex = randomImages();
   }
-  return match;
+  var centerImage = allImages[centerIndex];
+  previousImage.push(centerIndex);
+  console.log(centerImage);
+
+  var rightIndex = randomImages();
+  while(rightIndex == centerIndex || rightIndex == leftIndex){
+    rightIndex = randomImages();
+  } 
+  var rightImage = allImages[rightIndex];
+  previousImage.push(rightIndex);
+
 }
 
+// rendering different images
+var renderRandomImages = function(){
+  // console.log('1st image', previousImage[0]);
+  // console.log(leftImage);
+  var leftEl = document.getElementById('left-image');
+  var centerEl = document.getElementById('center-image');
+  var rightEl = document.getElementById('right-image');
 
-new Product('bag', 'lab/assets/bag.jpg');
-new Product('banana', 'lab/assets/banana.jpg');
-new Product('boots', 'lab/assets/boots.jpg');
-new Product('breakfast', 'lab/assets/breakfast.jpg');
-new Product('bubblegum', 'lab/assets/bubblegum.jpg');
-new Product('chair', 'lab/assets/chair.jpg');
-new Product('cthulhu', 'lab/assets/cthulhu.jpg');
-new Product('dog-duck', 'lab/assets/dog-duck.jpg');
-new Product('dragon', 'lab/assets/dragon.jpg');
-new Product('pen', 'lab/assets/pen.jpg');
-new Product('pet-sweep', 'lab/assets/pet-sweep.jpg');
-new Product('scissors', 'lab/assets/scissors.jpg');
-new Product('shark', 'lab/assets/shark.jpg');
-new Product('sweep', 'lab/assets/sweep.jpg');
-new Product('tauntaun', 'lab/assets/tauntaun.jpg');
-new Product('unicorn', 'lab/assets/unicorn.jpg');
-new Product('usb', 'lab/assets/usb.jpg');
-new Product('water-can', 'lab/assets/water-can.jpg');
-new Product('wine-glass', 'lab/assets/wine-glass.jpg');
+  var leftText = document.getElementById('left-para');
+  var centerText = document.getElementById('center-para');
+  var rightText = document.getElementById('right-para');
 
 
-function grabThreeProducts() {
-  var previousSet = [];
-  if (currentFirstProduct !== null) {
-    previousSet.push(currentFirstProduct.name);
-    previousSet.push(currentSecondProduct.name);
-    previousSet.push(currentThirdProduct.name);
-  }
-  var displayedImgs = [];
-  while (displayedImgs.length < 3) {
-    var randomIndex = Math.floor(Math.random() * Product.allProducts.length);
-    // Check Ducplicate on three displayed img
-    if (checkDuplicate(Product.allProducts[randomIndex].name, displayedImgs) === 0) {
-      // Check immediate previous set
-      if (previousSet.includes(Product.allProducts[randomIndex].name) === false) {
-        displayedImgs.push(Product.allProducts[randomIndex]);
-      }
-    }
-  }
-  firstImg.src = displayedImgs[0].imgURL;
-  secondImg.src = displayedImgs[1].imgURL;
-  thirdImg.src = displayedImgs[2].imgURL;
+  leftEl.setAttribute('src', allImages[previousImage[0]].imageSrc);
+  leftText.textContent = (allImages[previousImage[0]].name);
+  leftEl.dataset.imageIndex = previousImage[0];
+  allImages[previousImage[0]].views++;
 
-  currentFirstProduct = displayedImgs[0];
-  currentSecondProduct = displayedImgs[1];
-  currentThirdProduct = displayedImgs[2];
+  centerEl.setAttribute('src', allImages[previousImage[1]].imageSrc);
+  centerText.textContent = (allImages[previousImage[1]].name);
+  centerEl.dataset.imageIndex = previousImage[1];
+  allImages[previousImage[1]].views++;
+
+
+  rightEl.setAttribute('src', allImages[previousImage[2]].imageSrc);
+  rightText.textContent = (allImages[previousImage[2]].name)
+  rightEl.dataset.imageIndex = previousImage[2];
+  allImages[previousImage[2]].views++;
+
+}
+pickRandomImages();
+renderRandomImages();
+
+// Creating an Event handler
+container.addEventListener('click', handleClick);
+
+function handleClick(event){
+  console.log('handle click', event.target);
+  console.log(event.target.dataset.imageIndex);
+  var imageClick = parseInt(event.target.dataset.imageIndex);
+  console.log('what is this', imageClick);
+  allImages[imageClick].clicks++;
+  pickRandomImages();
+  console.log('this', randomImages());
+  renderRandomImages();
+  totalClicks++;
+  imageLikes();
 }
 
-grabThreeProducts();
-
-function displayTotalResult() {
-  for (var i = 0; i < Product.allProducts.length; i++) {
-    addElement('li', resultList, Product.allProducts[i].name + ' had ' + Product.allProducts[i].clickCtr + ' votes and was shown ' + Product.allProducts[i].shownCtr + ' times');
-  }
-}
-
-var counter = 0;
-function clickHandler(event) {
-  if (counter < 25) {
-    var id = event.target.id;
-
-    // Counter goes up every time the img is shown
-    currentFirstProduct.shownCtr++;
-    currentSecondProduct.shownCtr++;
-    currentThirdProduct.shownCtr++;
-
-    if(id === 'firstImg') {
-      currentFirstProduct.clickCtr++;
-    } else if(id === 'secondImg') {
-      currentSecondProduct.clickCtr++;
-    } else if(id === 'thirdImg') {
-      currentThirdProduct.clickCtr++;
-    }
-
-    grabThreeProducts();
-  }
-  counter++;
-
-  if(counter === 25) {
-    alert('Done!');
-    createChart();
-    displayTotalResult();
+// displaying the amount of likes for each image
+var imageLikes = function(){
+  if(totalClicks < clickLimit){
+    renderRandomImages();
+  } else {
+    container.removeEventListener('click', handleClick);
+    makeChart();
+    chartData();
   }
 }
 
-productImageList.addEventListener('click', clickHandler);
 
-// Create result chart
-function createChart() {
-  var label = [];
-  var voteData = [];
-  var shownData = [];
-  for (var i = 0; i < Product.allProducts.length; i++) {
-    label.push(Product.allProducts[i].name);
-    voteData.push(Product.allProducts[i].clickCtr);
-    shownData.push(Product.allProducts[i].shownCtr);
+var imageClicks = [];
+var imageViews = [];
+var imageName = [];
+
+var makeChart =  function() {
+  document.getElementById('main-container').style.display = 'none';
+  for(var i = 0; i < allImages.length; i++){
+    imageName.push(allImages[i].name);
+    imageViews.push(allImages[i].views);
+    imageClicks.push(allImages[i].clicks);
   }
-  // eslint-disable-next-line no-undef
-  new Chart(ctx, {
+}
+
+
+// Creating a chart
+function chartData(){
+  var ctx = document.getElementById('voteChart').getContext('2d');
+
+  var imageChart = new Chart(ctx, {
+  // The type of chart you want to create
     type: 'bar',
     data: {
-      labels: label,
+      labels: imageName,
       datasets: [{
-        label: '# of Votes',
-        data: voteData,
+        label: 'Number of Votes',
+        data: imageClicks,
+        backgroundColor: '#44448',
+      }, {
+        label: 'Number of Views',
+        data: imageViews,
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
+          'rgb(225, 85, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
+          'rgb(200, 180, 40)',
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
+          'rgb(55, 150, 220)',
         ],
-        borderWidth: 1,
-      },
-      {
-        label: '# of Views',
-        data: shownData,
-      }]
+      }],
     },
     options: {
       scales: {
         yAxes: [{
           ticks: {
-            beginAtZero: true
+            autoSkip: false,
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
           }
         }]
       }
     }
   });
+
+// function chartData() {
+//   return new Chart(ctx, imageChart);
+// }
 }
