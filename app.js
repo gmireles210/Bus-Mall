@@ -1,14 +1,14 @@
 // var productImageContainer = document.getElementById('productImageContainer');
-var allProdImages = document.getElementById('allProdImages');
-var prodOneImages = document.getElementById('prodOneImages');
-var prodTwoImages = document.getElementById('prodTwoImages');
-var prodThreeImages = document.getElementById('prodThreeImages');
+var productImageList = document.getElementById('productImageList');
+var firstImg = document.getElementById('firstImg');
+var secondImg = document.getElementById('secondImg');
+var thirdImg = document.getElementById('thirdImg');
 var resultList = document.getElementById('resultList');
 var ctx = document.getElementById('myChart').getContext('2d');
 
-var firstProduct = null;
-var secondProduct = null;
-var thirdProduct = null;
+var currentFirstProduct = null;
+var currentSecondProduct = null;
+var currentThirdProduct = null;
 
 // Set a constructor
 function Product(name, imgURL) {
@@ -31,7 +31,7 @@ function addElement(tag, container, text) {
 }
 
 // Helper function to check the duplication
-function checkDups(objName, arr) {
+function checkDuplicate(objName, arr) {
   var match = 0;
   for (var i = 0; i < arr.length; i++) {
     if (objName === arr[i].name) {
@@ -63,71 +63,71 @@ new Product('water-can', 'lab/assets/water-can.jpg');
 new Product('wine-glass', 'lab/assets/wine-glass.jpg');
 
 
-function fetchThreeProd() {
+function grabThreeProducts() {
   var previousSet = [];
-  if (firstProduct !== null) {
-    previousSet.push(firstProduct.name);
-    previousSet.push(secondProduct.name);
-    previousSet.push(thirdProduct.name);
+  if (currentFirstProduct !== null) {
+    previousSet.push(currentFirstProduct.name);
+    previousSet.push(currentSecondProduct.name);
+    previousSet.push(currentThirdProduct.name);
   }
-  var imagesDisplayed = [];
-  while (imagesDisplayed.length < 3) {
-    var randoIndex = Math.floor(Math.random() * Product.allProducts.length);
+  var displayedImgs = [];
+  while (displayedImgs.length < 3) {
+    var randomIndex = Math.floor(Math.random() * Product.allProducts.length);
     // Check Ducplicate on three displayed img
-    if (checkDups(Product.allProducts[randoIndex].name, imagesDisplayed) === 0) {
+    if (checkDuplicate(Product.allProducts[randomIndex].name, displayedImgs) === 0) {
       // Check immediate previous set
-      if (previousSet.includes(Product.allProducts[randoIndex].name) === false) {
-        imagesDisplayed.push(Product.allProducts[randoIndex]);
+      if (previousSet.includes(Product.allProducts[randomIndex].name) === false) {
+        displayedImgs.push(Product.allProducts[randomIndex]);
       }
     }
   }
-  prodOneImages.src = imagesDisplayed[0].imgURL;
-  prodTwoImages.src = imagesDisplayed[1].imgURL;
-  prodThreeImages.src = imagesDisplayed[2].imgURL;
+  firstImg.src = displayedImgs[0].imgURL;
+  secondImg.src = displayedImgs[1].imgURL;
+  thirdImg.src = displayedImgs[2].imgURL;
 
-  firstProduct = imagesDisplayed[0];
-  secondProduct = imagesDisplayed[1];
-  thirdProduct = imagesDisplayed[2];
+  currentFirstProduct = displayedImgs[0];
+  currentSecondProduct = displayedImgs[1];
+  currentThirdProduct = displayedImgs[2];
 }
 
-fetchThreeProd();
+grabThreeProducts();
 
-function totalResultsDisp() {
+function displayTotalResult() {
   for (var i = 0; i < Product.allProducts.length; i++) {
     addElement('li', resultList, Product.allProducts[i].name + ' had ' + Product.allProducts[i].clickCtr + ' votes and was shown ' + Product.allProducts[i].shownCtr + ' times');
   }
 }
 
 var counter = 0;
-function clicker(event) {
+function clickHandler(event) {
   if (counter < 25) {
     var id = event.target.id;
 
     // Counter goes up every time the img is shown
-    firstProduct.shownCtr++;
-    secondProduct.shownCtr++;
-    thirdProduct.shownCtr++;
+    currentFirstProduct.shownCtr++;
+    currentSecondProduct.shownCtr++;
+    currentThirdProduct.shownCtr++;
 
-    if(id === 'prodOneImages') {
-      firstProduct.clickCtr++;
-    } else if(id === 'prodTwoImages') {
-      secondProduct.clickCtr++;
-    } else if(id === 'prodThreeImages') {
-      thirdProduct.clickCtr++;
+    if(id === 'firstImg') {
+      currentFirstProduct.clickCtr++;
+    } else if(id === 'secondImg') {
+      currentSecondProduct.clickCtr++;
+    } else if(id === 'thirdImg') {
+      currentThirdProduct.clickCtr++;
     }
 
-    fetchThreeProd();
+    grabThreeProducts();
   }
   counter++;
 
   if(counter === 25) {
     alert('Done!');
     createChart();
-    totalResultsDisp();
+    displayTotalResult();
   }
 }
 
-allProdImages.addEventListener('click', clicker);
+productImageList.addEventListener('click', clickHandler);
 
 // Create result chart
 function createChart() {
