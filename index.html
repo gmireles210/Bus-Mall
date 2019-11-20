@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Bus-Mall</title>
+  <head>
+    <title>Bus Mall</title>
+    <link href="style.css" type="text/css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
-
-    </header>
+  <body>
     <main>
-        <section id="productImages">
-        <ul>
-            <li id="productOne"> <img id="prodOneImage" src="" alt=""></li>
-            <li id="productTwo"><img id="prodTwoImage" src="" alt=""></li>
-            <li id="productThree"><img id="prodThreeImage" src="" alt=""></li>
+      <div id='titleContainer'>
+        <h1>Hello Shopper!! Directly below is a catalog of luxury products engineered to provoke passengers to take a mini-mental vacation whilst traveling. Please click on any product that you would normally purchase.</h1>
+        <h2>After you have made your selections, a graph will pop-up that details the data from your clicks.</h2>
+      </div>
+      <div id='productImageContainer'>
+        <ul id='productImageList'>
+          <li><img id='prodOneImage' src='' alt='firstImg' /></li>
+          <li><img id='prodTwoImage' src='' alt='secondImg' /></li>
+          <li><img id='prodThreeImage' src='' alt='thirdImg' /></li>
         </ul>
-        </section>
-
+      </div>
+      <canvas id="chartResults"></canvas>
+      <div id='resultContainer'>
+        <ul id='resultList'>
+        </ul>
+      </div>
     </main>
-    <footer>
-
-    </footer>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
