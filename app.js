@@ -46,7 +46,7 @@ var imagez = [
 
 ];
 
-// Images constructor
+// Image constructor
 var Images = function(name, imageUrl){
   this.name = name;
   this.imageSrc = imageUrl;
@@ -58,19 +58,19 @@ var Images = function(name, imageUrl){
 
 
 
-// looping through the images
+// looping images
 for(var i = 0; i < imagez.length; i++){
   total_Images.push(new Images(imagez[i].name, imagez[i].imageSrc));
 }
 console.log(total_Images);
 
 
-// calculating random images to display
+// calculating rando's to populate
 var randoImages = function(){
   return Math.floor(Math.floor(Math.random() * imagez.length));
 }
 
-// pick random images and also take care of double images
+// pick random images and scrub duplicates
 var selectRandoImages = function(){
 
   prev_Image = [];
@@ -95,7 +95,6 @@ var selectRandoImages = function(){
 
 }
 
-// rendering different images
 var renderrandoImages = function(){
   // console.log('1st image', prev_Image[0]);
   // console.log(l_Image);
@@ -128,7 +127,7 @@ var renderrandoImages = function(){
 selectRandoImages();
 renderrandoImages();
 
-// Creating an Event handler
+// Create event handler
 container.addEventListener('click', handleClick);
 
 function handleClick(event){
@@ -144,7 +143,7 @@ function handleClick(event){
   imagePlus();
 }
 
-// displaying the amount of likes for each image
+// display likes for images
 var imagePlus = function(){
   if(clicksTot < maxClick){
     renderrandoImages();
@@ -170,12 +169,12 @@ var makeChart =  function() {
 }
 
 
-// Creating a chart
+// Create chart
 function chartData(){
   var ctx = document.getElementById('voteChart').getContext('2d');
 
   var imageChart = new Chart(ctx, {
-  // The type of chart you want to create
+  // Specific chart style
     type: 'bar',
     data: {
       labels: imageName,
