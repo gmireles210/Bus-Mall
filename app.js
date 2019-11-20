@@ -182,72 +182,71 @@ function chartData(){
       datasets: [{
         label: 'Number of Votes',
         data: imageClicks,
-        backgroundColor: '#44448',
+        backgroundColor: '#e5f5e0',
       }, {
         label: 'Number of Views',
         data: imageViews,
         backgroundColor: [
-          red,
-          blue,
-          yellow,
-          green,
-          purple,
-          red,
-          blue,
-          yellow,
-          green,
-          purple,
-          red,
-          blue,
-          yellow,
-          green,
-          purple,
-          red,
-          blue,
-          yellow,
-          green,
-          purple,
+          'rgb(161,217,155)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
+          'rgb(49,163,84)',
         ],
         borderColor: [
-          redBorder,
-          blueBorder,
-          yellowBorder,
-          greenBorder,
-          purpleBorder,
-          redBorder,
-          blueBorder,
-          yellowBorder,
-          greenBorder,
-          purpleBorder,
-          redBorder,
-          blueBorder,
-          yellowBorder,
-          greenBorder,
-          purpleBorder,
-          redBorder,
-          blueBorder,
-          yellowBorder,
-          greenBorder,
-          purpleBorder,
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
+          'rgb(153,52,4)',
         ],
-        borderWidth: 1
-      }]
+      }],
     },
     options: {
-      legend: {
-        display: false
-      },
       scales: {
         yAxes: [{
           ticks: {
-            stepSize: 1,
-            beginAtZero:true
+            autoSkip: false,
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
           }
         }]
       }
     }
   });
-};
 
 // function chartData() {
 //   return new Chart(ctx, imageChart);
