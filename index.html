@@ -1,52 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
+  <meta charset="UTF-8">
   <title>Bus Mall</title>
-  <link rel="stylesheet" href="style.css">
-  
+  <link href="reset.css" type="text/css" rel="stylesheet" />
+  <link href="style.css" type="text/css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <header>
-    <nav>
-      <h1>Bus Mall</h1>
-    </nav>
+    <a href="#">Bus Mall</a>
+
+    <ul>
+      <li>
+        <a href="#">Take Metric Based Survey</a>
+      </li>
+      <li>
+        <a href="#">Win Stuff</a>
+      </li>
+      <li>
+        <a href="#">Opt-Out</a>
+      </li>
+      <li>
+        <a href="#">Contact Us</a>
+      </li>
+    </ul>
   </header>
-    <main>
-      <aside>
+  <main>
+    <h1>Shoppping Metrics Research</h1>
+    <p id="user-directions">Hello Shopper!! Directly below is a catalog of luxury products engineered to provoke passengers to take a mini-mental vacation whilst traveling. Please click on any product that you would normally purchase. After <span id="votes"></span> selections, a graph will pop-up that details the data from your clicks.</p>
+    <ul id="image-products"></ul>
 
-      </aside>
+    <p id="graph-results">Hello Shopper!! As promised, here is the graph showing the metrics/data on the clicks you made previously.</p>
+    
+    <canvas id="graph-info" width="" height="">
+      <p>Unable to display at this time.</p>
+    </canvas>
+  </main>
 
-    <h2>Shoppping Metrics Research</h2>
-    <p>Hello Shopper!! Directly below is a catalog of luxury products engineered to provoke passengers to take a mini-mental vacation whilst traveling. <br>
-       Please click on any product that you would normally purchase. After you make your selections, a graph will pop-up that details the data from your clicks.</p>
-
-<section id="main-container">
-
-    <div id="image">
-        <img id="left-image" src="" alt="">
-      <p id="left-con"></p>
-    </div>
-
-    <div id="image">
-      <img id="center-image" src="" alt="">
-      <p id="center-con"></p>
-    </div>
-
-    <div id="image">
-      <img id="right-image" src="" alt="">
-      <p id="right-con"></p>
-    </div>
-</section>
-
-<div>
-    <canvas id="voteChart"></canvas>
-</div>
-
-    </main>
-
-  
+  <footer>
+    <p>Thank you for participating in this data survey. Your metrics will not be sold to social media sites!</p>
+  </footer>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
-
   <script src="app.js"></script>
 </body>
+
 </html>

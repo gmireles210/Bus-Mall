@@ -1,41 +1,129 @@
-*{
-    box-sizing: border-box;
-  }
-  
-  h1{
-    text-align: center;
-  }
-  
-  img{
-    width: 300px;
-    height: 300px;
-    padding: 20px;
-    margin-left: 5px;
-    border: 1px #a6bddb;
-  }
-  
-  #image{
-    float: left;
-    width: 30.33%;
-    padding: 5px;
-  } 
-  
-  #main-container::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-  
-  
-  #left-con{
-    text-align: center;
-  }
-  
-  #center-con{
-    text-align: center;
-  }
-  
-  #right-con{
-    text-align: center;
-  }
-  
+html {
+  background: url(../img/background.jpg) no-repeat center center fixed;
+  background-size: 100% 100%;
+}
+
+body {
+  background-color: #ffffb2;
+  font-family: 'Odibee Sans', cursive;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+header, footer {
+  background-color: #bd0026;
+  color: #ffffb2;
+  box-shadow: 1px 1px 3px #cccccc;
+  height: 65px;
+}
+
+header {
+  padding: 20px 30px 0;
+}
+
+a {
+  color: #ffffb2;;
+  font-size: 1.1em;
+  text-decoration: none;
+  text-shadow: 1px 1px 3px #cccccc;
+}
+
+header > a {
+  font-family: 'Righteous', Arial, Helvetica, sans-serif;
+  float: left;
+  font-size: 2.5em;
+}
+
+header ul {
+  text-align: right;
+  padding-top: 15px;
+}
+
+header li {
+  display: inline-block;
+  margin-right: 35px;
+}
+
+header li a:hover {
+  text-shadow: 3px 3px 5px #cccccc;
+}
+
+header li a:active {
+  text-shadow: 1px 1px 3px #cccccc;
+}
+
+main {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 50px 0 0;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5em;
+}
+
+p {
+  margin: 25px 0;
+  font-size: 1.2em;
+  line-height: 1.2em;
+}
+
+main ul {
+  overflow: auto;
+}
+
+main li {
+  float: left;
+  width: 32%;
+  margin: 0 .60% 1%;
+}
+
+main li:nth-child(3) {
+  margin-right: 0;
+}
+
+figure {
+  border: 1px solid #cccccc;
+  background: white;
+  box-shadow: 1px 1px 3px grey;
+  border-radius: 5px;
+}
+
+main img {
+  border: 1px solid #cccccc;
+  width: 80%;
+  display: block;
+  margin: 30px auto 10px;
+}
+
+figCaption {
+  text-transform: capitalize;
+  text-align: center;
+  font-size: 1.5em;
+  padding: 10px 0 20px;
+}
+
+ul + p {
+  display: none;
+  text-align: center;
+  margin-top: 35px;
+}
+
+canvas {
+  padding: 10px 0 0;
+  border-radius: 5px;
+  display: none;
+  margin: 50px auto;
+  background-color: white;
+}
+
+footer p {
+  text-align: center;
+  padding: 30px 0 0;
+  font-size: .75em;
+}
