@@ -37,10 +37,10 @@ var imagez = [
   { imageSrc:'lab/assets/pet-sweep.jpg', name:'pet-sweep'},
   { imageSrc:'lab/assets/scissors.jpg', name:'scissors'},
   { imageSrc:'lab/assets/shark.jpg', name:'shark'},
-  { imageSrc:'lab/assets/sweep.png', name:'sweep'},
+  { imageSrc:'lab/assets/sweep.jpg', name:'sweep'},
   { imageSrc:'lab/assets/tauntaun.jpg', name:'tauntaun'},
   { imageSrc:'lab/assets/unicorn.jpg', name:'unicorn'},
-  { imageSrc:'lab/assets/usb.gif', name:'usb'},
+  { imageSrc:'lab/assets/usb.jpg', name:'usb'},
   { imageSrc:'lab/assets/water-can.jpg', name:'water-can'},
   { imageSrc:'lab/assets/wine-glass.jpg', name:'wine-glass'},
 
