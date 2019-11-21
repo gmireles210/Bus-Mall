@@ -1,9 +1,9 @@
 'use strict';
 
-// Declare array to store objects created via constructor function
+// Declared array
 var allProducts = [];
 
-// Constructor function that create an object for each product
+// Constructor function 
 function Product(name) {
   this.name = name;
   this.path = `lab/assets/${name}.jpg`;
@@ -11,10 +11,10 @@ function Product(name) {
   this.numTimeShown = 0; // This property is not in use
 }
 
-// Constructor function that will contain all data the user will interact with
+// Constructor function that will contain data for user interaction
 var pageControl = {};
 
-// Determines how many products to display
+// Products to display
 pageControl.NumProdToDisplay = 3;
 
 pageControl.ulEl = document.getElementById('image-products');
@@ -26,13 +26,13 @@ pageControl.productsVoteCounts = [];
 pageControl.total_Votes = 25;
 pageControl.productNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
 
-// Generates unique random numbers that are different than the previous unique random numbers
+// Generates unique random numbers that differ from previous
 pageControl.grabUniqueRandoNums = function() {
   var randoNum;
   pageControl.previousProductsShown = pageControl.currentProductsShown;
   pageControl.currentProductsShown = [];
 
-  // Makes sure the new randomly generated number is not a duplicate
+  // Makes sure the new rando num is not the same as previous
   while (pageControl.currentProductsShown.length < pageControl.NumProdToDisplay) {
     randoNum = fetchRandomNumber();
     if (pageControl.currentProductsShown.indexOf(randoNum) === -1 &&
@@ -42,7 +42,7 @@ pageControl.grabUniqueRandoNums = function() {
   }
 };
 
-// Renders products to the screen
+// Renders to screen
 pageControl.renderProducts = function() {
   pageControl.grabUniqueRandoNums();
   pageControl.ulEl.innerHTML = '';
@@ -70,14 +70,14 @@ pageControl.renderProducts = function() {
   }
 };
 
-// Retrieves the object that was clicked on then increments its timesClicked value
+// Retrieves the object that was clicked, then increments its timesClicked value
 pageControl.clickedOn = function(event) {
   var clickedOnElem = event.target.textContent;
   if (!clickedOnElem) {
     clickedOnElem = event.target.alt;
   }
 
-  // Returns an array with one value, the object that was clicked on
+  // Returns an array with a single value of obj clicked
   var objToRevise = allProducts.filter(function(object) {
     return object.name === clickedOnElem;
   });
@@ -88,7 +88,7 @@ pageControl.clickedOn = function(event) {
   pageControl.verifyVotingFinish();
 };
 
-// Adds products vote counts to the pageControl.productsVoteCounts array
+// Adds vote tallys to the pageControl.productsVoteCounts array
 pageControl.groupProdVoteCounts = function() {
   pageControl.productsVoteCounts = [];
   allProducts.forEach(function(product) {
@@ -96,7 +96,7 @@ pageControl.groupProdVoteCounts = function() {
   });
 };
 
-// Changes styles of the canvas and main > p elements to be used when the user finishes voting
+// Changes styles of canvas and main > p elements to be utilized when finished voting
 pageControl.updateElemStyle = function() {
   var directionsPageEl = document.getElementById('user-directions');
   var resPageElem = document.getElementById('graph-results');
@@ -106,13 +106,13 @@ pageControl.updateElemStyle = function() {
   resPageElem.style.display = 'block';
 };
 
-// Calculates product vote counts and sends to localStorage
+// Calculates the vote counts, sends to localStor
 pageControl.updateClicksLocalStore = function() {
   pageControl.groupProdVoteCounts();
   localStorage.setItem('voteCounts', JSON.stringify(pageControl.productsVoteCounts));
 };
 
-// If 'voteCounts' is in localStorage, updates the timesClicked values on each object
+// If 'voteCounts' is in localStor, updates the timesClicked values on each object
 pageControl.updateVoteNumsLocalStor = function() {
   var savedProdVoteTally =  JSON.parse(localStorage.getItem('voteCounts'));
   if (savedProdVoteTally !== null && savedProdVoteTally.length > 0) {
@@ -122,7 +122,7 @@ pageControl.updateVoteNumsLocalStor = function() {
   }
 };
 
-// Displays the graph if the user is done voting
+// Displays the graph if and when user is done voting
 pageControl.verifyVotingFinish = function() {
   var finalUserClicks = pageControl.productsVoteCounts.reduce(function(accumulator, currentValue) {
     return accumulator + currentValue;
@@ -141,12 +141,12 @@ pageControl.verifyVotingFinish = function() {
   }
 };
 
-// Generates a random number
+// Creates a random number
 var fetchRandomNumber = function() {
   return Math.floor(Math.random() * pageControl.productNames.length);
 };
 
-// Starts the app
+// Start app
 (function() {
   // Creates a new object for each product using the constructor function
   pageControl.productNames.forEach(function(product) {
@@ -155,14 +155,14 @@ var fetchRandomNumber = function() {
 
   pageControl.spanEl.textContent = pageControl.total_Votes;
 
-  // Binds clickedOn to ulEl
+  // Appends clickedOn to ulEl
   pageControl.ulEl.addEventListener('click', pageControl.clickedOn);
 
   pageControl.renderProducts();
   pageControl.updateVoteNumsLocalStor();
 })();
 
-// Graph information
+// Graph info
 var drawGraphOfProductsVoteCounts = function() {
   var two_Dim = '2d';
   var red = 'rgb(145,0,63)';
